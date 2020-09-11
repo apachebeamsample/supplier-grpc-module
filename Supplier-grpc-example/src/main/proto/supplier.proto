@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+
+option java_package = "com.order.generated.stubs";
+option java_multiple_files = true;
+
+
+message SupplierHistoryRequest {
+  string supplierId=1;
+}
+
+message SupplierHistoryResponse{
+  repeated SupplierHistory suppHist=1;
+}
+
+message SupplierHistory{
+  SupplierDetails supplier=1;
+}
+
+message SupplierDetails{
+  string supplierId=1;
+  string supplierName=2;
+  repeated Address address=3;
+}
+
+
+message Address{
+  string addressType=1;
+  string houseNumber=2;
+  int64 phone=3;
+}
+
+service SupplierService{
+
+  rpc SupplierHistory(SupplierHistoryRequest) returns (SupplierHistoryResponse) {};
+}
